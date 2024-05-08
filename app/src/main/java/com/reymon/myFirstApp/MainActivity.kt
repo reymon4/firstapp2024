@@ -4,14 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.google.android.material.snackbar.Snackbar
 import com.reymon.myFirstApp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -25,17 +18,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         //Inicializo el binding
         setContentView(binding.root)
+        initListeners()
 
-        binding.btnLogin.setOnClickListener {
-            if (binding.etxtUser.text.toString() == "admin" && binding.etxtPass.text.toString() == "admin") {
-                initListeners()
-                Snackbar.make(binding.etxtUser, "Bienvenido", Snackbar.LENGTH_SHORT).show();
 
-            } else {
-                Toast.makeText(this, "Datos mal ingresados, no sea imbecil", Toast.LENGTH_SHORT)
-                    .show();
-            }
-        }
     }
 
     override fun onStart() {
@@ -49,9 +34,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initListeners(){
-        binding.btnLogin.setOnClickListener{
-
-            startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-        }
+      binding.btnLogin.setOnClickListener{
+          var r = LoginUsercase()
+          var result = r(
+              binding.etxtUser.toString(),
+              binding.etxtPass.toString()
+          )
+          result.onSuccess {
+              var a = Intent(this, LoginActivity::class.java)
+              a.putExtra("idUser", it)
+              startActivity(a)
+          }
+          result.onFailure{
+              Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
+          }
+      }
     }
 }
