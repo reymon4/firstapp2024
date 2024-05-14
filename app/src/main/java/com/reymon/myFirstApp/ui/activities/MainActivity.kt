@@ -1,11 +1,13 @@
-package com.reymon.myFirstApp
+package com.reymon.myFirstApp.ui.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.reymon.myFirstApp.data.local.repository.ListUsers
 import com.reymon.myFirstApp.databinding.ActivityMainBinding
+import com.reymon.myFirstApp.logic.usercases.LoginUsercase
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,14 +37,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun initListeners(){
       binding.btnLogin.setOnClickListener{
-          var r = LoginUsercase()
-          var result = r(
+          var loginUsercase = LoginUsercase(ListUsers())
+          var result = loginUsercase(
               binding.etxtUser.toString(),
               binding.etxtPass.toString()
           )
-          result.onSuccess {
+          result.onSuccess {user ->
               var a = Intent(this, LoginActivity::class.java)
-              a.putExtra("idUser", it)
+              a.putExtra("idUser", user.id)
               startActivity(a)
           }
           result.onFailure{

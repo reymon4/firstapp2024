@@ -1,12 +1,9 @@
-package com.reymon.myFirstApp
+package com.reymon.myFirstApp.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.reymon.myFirstApp.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -22,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
     private fun initListeners(){
         binding.txtLogIn.setOnClickListener {
             Log.d("logIn", "Presionando el txt_logIN")
-            var a = Intent(this,MainActivity::class.java)
+            var a = Intent(this, MainActivity::class.java)
             startActivity(a)
         }
     }
