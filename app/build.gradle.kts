@@ -21,8 +21,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -33,8 +32,8 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures{
-        viewBinding=true
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -50,10 +49,15 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     //Retrofit
-    implementation ("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
     //Serialization
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
     //CORRUTINAS
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    //GLIDE -> Tratar de implementar la nueva implementación de bibliotecas con un
+    // proyecto con la última versión de Android Studio
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    //COIL
+    implementation("io.coil-kt:coil:2.6.0")
 
 }

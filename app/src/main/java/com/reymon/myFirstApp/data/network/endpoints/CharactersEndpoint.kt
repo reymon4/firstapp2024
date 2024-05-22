@@ -1,6 +1,6 @@
 package com.reymon.myFirstApp.data.network.endpoints
 
-import com.reymon.myFirstApp.data.network.entities.Character
+import com.reymon.myFirstApp.data.network.entities.charactersDBS.Character
 import retrofit2.Response
 import retrofit2.http.GET
 

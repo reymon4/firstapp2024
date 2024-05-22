@@ -1,4 +1,4 @@
-package com.reymon.myFirstApp.data.network.entities
+package com.reymon.myFirstApp.data.network.entities.charactersDBS
 
 data class Character(
     val affiliation: String?="",

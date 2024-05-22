@@ -4,27 +4,52 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.reymon.myFirstApp.data.local.repository.ListUsers
+import com.reymon.myFirstApp.data.network.entities.topNews.Data
 import com.reymon.myFirstApp.databinding.ActivityMainBinding
+import com.reymon.myFirstApp.logic.usercases.GetAllTopsNewUserCase
 import com.reymon.myFirstApp.logic.usercases.LoginUsercase
+import com.reymon.myFirstApp.ui.adapters.NewsAdapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
-
-    //Esta variable la declaramos y no la inicializamos hasta que se haga su primer llamado
     private lateinit var binding: ActivityMainBinding
-
+    private  var items = ArrayList<Data>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-// AQUÍ LLAMAMOS POR PRIMERA VEZ A LA VARIABLE binding
         binding = ActivityMainBinding.inflate(layoutInflater)
-        //Inicializo el binding
         setContentView(binding.root)
-        initListeners()
+        initData()
+        initRecyclerView(items)
+    }
+    private fun initRecyclerView(items: List<Data>){
+        binding.rvTopNews.adapter = NewsAdapter(items)
+        binding.rvTopNews.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    }
+    private fun initData(){
+        lifecycleScope.launch(Dispatchers.IO) {
+            binding.progressBar.visibility = View.VISIBLE
+            val resultItems = GetAllTopsNewUserCase().invoke()
+            withContext(Dispatchers.Main){
+                binding.progressBar.visibility = View.INVISIBLE
 
+                resultItems.onSuccess {
+              initRecyclerView(it!!.toList())
+            }
+            resultItems.onFailure{
+                initRecyclerView(emptyList())
+            }
+        }
+        }
 
     }
-
     override fun onStart() {
         super.onStart()
         Log.d("Start activity", "onStart() del activity")
@@ -35,21 +60,23 @@ class MainActivity : AppCompatActivity() {
         Log.d("Resume activity", "onResume() del activity")
     }
 
-    private fun initListeners(){
-      binding.btnLogin.setOnClickListener{
-          var loginUsercase = LoginUsercase(ListUsers())
-          var result = loginUsercase(
-              binding.etxtUser.toString(),
-              binding.etxtPass.toString()
-          )
-          result.onSuccess {user ->
-              var a = Intent(this, LoginActivity::class.java)
-              a.putExtra("idUser", user.id)
-              startActivity(a)
-          }
-          result.onFailure{
-              Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
-          }
-      }
-    }
+    //private fun initListeners(){
+    /* binding.btnLogin.setOnClickListener{
+         var loginUsercase = LoginUsercase(ListUsers())
+         var result = loginUsercase(
+             binding.etxtUser.toString(),
+             binding.etxtPass.toString()
+         )
+         result.onSuccess {user ->
+             var a = Intent(this, LoginActivity::class.java)
+             a.putExtra("idUser", user.id)
+             startActivity(a)
+         }
+         result.onFailure{
+             Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
+         }
+     }
+   //}
+   }
+     */
 }
