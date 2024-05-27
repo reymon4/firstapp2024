@@ -59,5 +59,7 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
     //COIL
     implementation("io.coil-kt:coil:2.6.0")
+    //Material Design 3
+    implementation ("androidx.compose.material3:material3:1.12.0")
 
 }
