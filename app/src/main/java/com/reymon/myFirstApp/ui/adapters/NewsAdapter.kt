@@ -1,32 +1,34 @@
 package com.reymon.myFirstApp.ui.adapters
 
-import android.renderscript.ScriptGroup.Binding
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.bumptech.glide.Glide
 import com.reymon.myFirstApp.R
-import com.reymon.myFirstApp.data.network.entities.topNews.Data
 import com.reymon.myFirstApp.databinding.ItemTopNewsBinding
+import com.reymon.myFirstApp.ui.entities.NewsDataUI
 
-class NewsAdapter(private val itemList: List<Data>) :
+class NewsAdapter(private val itemList: List<NewsDataUI>) :
     RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
 
         private val binding = ItemTopNewsBinding.bind(view)
-        fun render(data: Data) {
-            binding.txtTitleNews.text = data.title.toString()
+        fun render(data: NewsDataUI) {
+            binding.txtTitleNews.text = data.name.toString()
             binding.txtDescNews.text = data.description.toString()
             binding.txtUrlNews.text = data.url.toString()
-            binding.imgTopNews.load("https://sm.ign.com/ign_latam/screenshot/default/7bfbb86d1ef7aeb11ce16898521c0604_krp6.jpg")
+            binding.imgTopNews.load(data.image.toString()){
+                crossfade(true)
+                placeholder(R.drawable.background_monkey)
+            }
             //Glide.with(binding.root).load(data.image_url).into(binding.imgTopNews)
         }
 
     }
-//Asignamos el layout de diseño genérico del elemnto
+
+    //Asignamos el layout de diseño genérico del elemnto
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         //Levantamos como objeto el layout que vamos a inflar (levantar)
         val inflater = LayoutInflater.from(parent.context)

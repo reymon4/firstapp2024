@@ -1,26 +1,22 @@
 package com.reymon.myFirstApp.ui.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.reymon.myFirstApp.data.local.repository.ListUsers
-import com.reymon.myFirstApp.data.network.entities.topNews.Data
 import com.reymon.myFirstApp.databinding.ActivityMainBinding
 import com.reymon.myFirstApp.logic.usercases.GetAllTopsNewUserCase
-import com.reymon.myFirstApp.logic.usercases.LoginUsercase
 import com.reymon.myFirstApp.ui.adapters.NewsAdapter
+import com.reymon.myFirstApp.ui.entities.NewsDataUI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private  var items = ArrayList<Data>()
+    private  var items = ArrayList<NewsDataUI>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -28,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         initData()
         initRecyclerView(items)
     }
-    private fun initRecyclerView(items: List<Data>){
+    private fun initRecyclerView(items: List<NewsDataUI>){
         binding.rvTopNews.adapter = NewsAdapter(items)
         binding.rvTopNews.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

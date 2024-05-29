@@ -35,6 +35,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
 }
 
 dependencies {
@@ -60,6 +61,6 @@ dependencies {
     //COIL
     implementation("io.coil-kt:coil:2.6.0")
     //Material Design 3
-    implementation ("androidx.compose.material3:material3:1.12.0")
+    implementation ("androidx.compose.material3:material3-android:1.2.1")
 
 }
