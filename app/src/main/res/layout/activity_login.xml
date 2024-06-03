@@ -6,16 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/city"
-    android:transitionName="signUp_element_container"
     tools:context=".ui.activities.LoginActivity">
 
 
     <LinearLayout
         android:id="@+id/layout_txt_logo_login"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:orientation="horizontal"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +25,7 @@
             android:id="@+id/txt_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_marginEnd="150dp"
             android:fontFamily="@font/bebas_neue"
             android:text="KINGFLIX"
             android:textColor="@color/violet2"
@@ -34,17 +33,27 @@
 
         <TextView
             android:id="@+id/txt_log_in"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="150dp"
             android:fontFamily="@font/inter_semibold"
             android:text="LOG IN"
             android:textColor="@color/white"
             android:textSize="20dp" />
     </LinearLayout>
 
-    <Button
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="90dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_txt_logo_login"></FrameLayout>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_get_started"
+        style="@style/Animation.Design.BottomSheetDialog"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
@@ -53,5 +62,7 @@
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

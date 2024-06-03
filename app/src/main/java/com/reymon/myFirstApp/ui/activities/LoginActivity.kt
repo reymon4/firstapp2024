@@ -3,12 +3,17 @@ package com.reymon.myFirstApp.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.ui.res.colorResource
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.reymon.myFirstApp.R
 import com.reymon.myFirstApp.databinding.ActivityLoginBinding
 import com.reymon.myFirstApp.logic.usercases.GetAllCharactersUserCase
-import com.reymon.myFirstApp.logic.usercases.GetAllTopsNewUserCase
+import com.reymon.myFirstApp.ui.fragments.LogInFragment
 
 import com.reymon.myFirstApp.ui.fragments.SignUpFragment
 
@@ -31,26 +36,34 @@ class LoginActivity : AppCompatActivity() {
     private fun initListeners() {
         binding.btnGetStarted.setOnClickListener {
             Log.d("logIn", "Presionando el txt_logIN")
-            replaceFragment(SignUpFragment())
+
+            binding.loginLayout.setBackgroundColor(resources.getColor(R.color.white))
+            binding.btnGetStarted.visibility = View.GONE
+            binding.txtLogIn.setTextColor(resources.getColor(R.color.black))
+            replaceFragmentByTransition(SignUpFragment())
         }
         binding.txtLogIn.setOnClickListener {
             //Como dijimos en el endpoint que vamos a utilizar una corrutina. Creamos el ambiente para esta
-            lifecycleScope.launch(Dispatchers.IO) {
-                GetAllCharactersUserCase().invoke()
-            }
+            /*  lifecycleScope.launch(Dispatchers.IO) {
+                  GetAllCharactersUserCase().invoke()
+              }*/
+            binding.loginLayout.setBackgroundColor(resources.getColor(R.color.black))
+            binding.btnGetStarted.visibility = View.GONE
+            binding.txtLogIn.setTextColor(resources.getColor(R.color.white))
+            replaceFragmentByTransition(LogInFragment())
 
         }
         binding.txtLogo.setOnClickListener {
             startActivity(
-                Intent(this, MainActivity::class.java)
+                Intent(this, LoginActivity::class.java)
             )
         }
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    private fun replaceFragmentByTransition(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.addSharedElement(binding.loginLayout, "signUp_element_container")
-            .replace(binding.loginLayout.id, fragment)
+            // transaction.addSharedElement(binding.loginLayout, "signUp_element_container")
+            .replace(binding.fragmentContainer.id, fragment)
             .commit()
     }
 
