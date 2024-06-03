@@ -32,7 +32,7 @@ object RetrofitBase {
         return Retrofit.Builder()
             .baseUrl("https://api.themoviedb.org/3/movie/")
             .addConverterFactory(GsonConverterFactory.create())
-            .client(apiClient())
+            //.client(apiClient())
             .build()
     }
 
