@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
             binding.loginLayout.setBackgroundColor(resources.getColor(R.color.white))
             binding.btnGetStarted.visibility = View.GONE
             binding.txtLogIn.setTextColor(resources.getColor(R.color.black))
-            replaceFragmentByTransition(SignUpFragment())
+            replaceFragment(SignUpFragment())
         }
         binding.txtLogIn.setOnClickListener {
             //Como dijimos en el endpoint que vamos a utilizar una corrutina. Creamos el ambiente para esta
@@ -50,17 +50,17 @@ class LoginActivity : AppCompatActivity() {
             binding.loginLayout.setBackgroundColor(resources.getColor(R.color.black))
             binding.btnGetStarted.visibility = View.GONE
             binding.txtLogIn.setTextColor(resources.getColor(R.color.white))
-            replaceFragmentByTransition(LogInFragment())
+            replaceFragment(LogInFragment())
 
         }
         binding.txtLogo.setOnClickListener {
             startActivity(
-                Intent(this, LoginActivity::class.java)
+                Intent(this, MainActivity::class.java)
             )
         }
     }
 
-    private fun replaceFragmentByTransition(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
             // transaction.addSharedElement(binding.loginLayout, "signUp_element_container")
             .replace(binding.fragmentContainer.id, fragment)

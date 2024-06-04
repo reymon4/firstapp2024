@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.carousel.CarouselLayoutManager
 import com.reymon.myFirstApp.databinding.ActivityMainBinding
 import com.reymon.myFirstApp.logic.usercases.GetAllTopsNewUserCase
 import com.reymon.myFirstApp.ui.adapters.NewsAdapter
@@ -26,8 +27,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun initRecyclerView(items: List<NewsDataUI>){
         binding.rvTopNews.adapter = NewsAdapter(items)
-        binding.rvTopNews.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.rvTopNews.layoutManager = CarouselLayoutManager()
     }
     private fun initData(){
         lifecycleScope.launch(Dispatchers.IO) {

@@ -10,5 +10,5 @@ interface MovieTMDBEndpoint {
 
     @GET("top_rated")
 
-    suspend fun getAllTop(@Header("Authorization") apiKey:String="Bearer 6bef7d35443483b3cccb355a0cc5cdd3",@Header("Accept") accept: String = "application/json"): Response<Movie>
+    suspend fun getAllTop(): Response<Movie>
 }
