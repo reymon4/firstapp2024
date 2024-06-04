@@ -22,13 +22,13 @@ object RetrofitBase {
             .build()
     }
 
-    fun returnBaseRetrofitNews(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://api.thenewsapi.com/v1/news/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(apiClient())
-            .build()
-    }
+//    fun returnBaseRetrofitNews(): Retrofit {
+//        return Retrofit.Builder()
+//            .baseUrl("https://api.thenewsapi.com/v1/news/")
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .client(apiClient())
+//            .build()
+//    }
 
     fun returnBaseRetrofitTMDB(): Retrofit {
         return Retrofit.Builder()
@@ -39,7 +39,7 @@ object RetrofitBase {
     }
 
     private fun apiClient(): OkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(TMDBInterceptor(TMDB_AUTH_TOKEN, TMDB_API_KEY))
+        .addInterceptor(TMDBInterceptor(TMDB_AUTH_TOKEN))
         .build()
 
 

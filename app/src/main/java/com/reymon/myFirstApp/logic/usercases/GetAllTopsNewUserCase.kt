@@ -12,9 +12,10 @@ import java.lang.Exception
 
 class GetAllTopsNewUserCase {
 
+    //CCRREGIR EL NOMBRE DE LA FUNCIÓN DEL RESPONSE DE RETROFIT
     suspend operator fun invoke(): Result<List<NewsDataUI>?> {
         var items = mutableListOf<NewsDataUI>()
-        var response = RetrofitBase.returnBaseRetrofitNews()
+        var response = RetrofitBase.returnBaseRetrofitDB()
             .create(NewsEndpoint::class.java)
             .getAllTopNews()
 

@@ -1,5 +1,6 @@
 package com.reymon.myFirstApp.ui.core
 
+import com.reymon.myFirstApp.data.network.entities.tmdb.Movie
 import com.reymon.myFirstApp.data.network.entities.topNews.Data
 import com.reymon.myFirstApp.ui.entities.MovieDataUI
 import com.reymon.myFirstApp.ui.entities.NewsDataUI
@@ -17,9 +18,14 @@ fun Data.toNewsDataUI(): NewsDataUI {
     )
 }
 
-fun Data.toMovieDataUI(): MovieDataUI {
+/*fun Movie.toMovieDataUI(): MovieDataUI {
     return MovieDataUI(
-
+        this.id,
+        this.title,
+        this.overview,
+        this.release_date,
+        this.videos,
+        this.vote_average
     )
-}
+}*/
 

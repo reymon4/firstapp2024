@@ -28,4 +28,6 @@ data class Movie(
     val videos: Videos,
     val vote_average: Double,
     val vote_count: Int
-)
+) {
+
+}

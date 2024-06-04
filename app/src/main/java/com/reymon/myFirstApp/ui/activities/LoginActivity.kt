@@ -4,12 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.res.colorResource
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.reymon.myFirstApp.R
 import com.reymon.myFirstApp.databinding.ActivityLoginBinding
 import com.reymon.myFirstApp.logic.usercases.GetAllCharactersUserCase
@@ -26,6 +28,16 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Enable Activity Transitions. Optionally enable Activity transitions in your
+        // theme with <item name=”android:windowActivityTransitions”>true</item>.
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
+
+        // Attach a callback used to capture the shared elements from this Activity to be used
+        // by the container transform transition
+        setExitSharedElementCallback(MaterialContainerTransformSharedElementCallback())
+
+        // Keep system bars (status bar, navigation bar) persistent throughout the transition.
+        window.sharedElementsUseOverlay = false
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
