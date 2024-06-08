@@ -10,12 +10,15 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.transition.platform.MaterialContainerTransform
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.reymon.myFirstApp.R
+import com.reymon.myFirstApp.data.network.entities.tmdb.rated.Result
 import com.reymon.myFirstApp.databinding.ActivityDashboardBinding
 import com.reymon.myFirstApp.databinding.ActivityLoginBinding
+import com.reymon.myFirstApp.ui.adapters.TopRatedAdapter
 
 class DashboardActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDashboardBinding
+    private var items = ArrayList<Result>()
     override fun onCreate(savedInstanceState: Bundle?) {
         // Enable Activity Transitions. Optionally enable Activity transitions in your
         // theme with <item name=”android:windowActivityTransitions”>true</item>.
@@ -42,4 +45,12 @@ class DashboardActivity : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
         }
+
+    privare fun initRecyclerView(items: List<Result>){
+        binding.rvTopRated.adapter = TopRatedAdapter(items)
+        binding.rvTopRated.layoutManager = LinearLayoutManager(this)
+
+
+
+
     }

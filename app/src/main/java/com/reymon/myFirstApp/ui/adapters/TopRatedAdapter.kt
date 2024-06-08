@@ -6,31 +6,37 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import coil.load
 import com.reymon.myFirstApp.R
-import com.reymon.myFirstApp.databinding.ItemTopRatedBinding
+import com.reymon.myFirstApp.data.network.entities.tmdb.rated.Result
+import com.reymon.myFirstApp.databinding.ItemMovieBinding
+
 import com.reymon.myFirstApp.ui.entities.MovieDataUI
 
-class TopRatedAdapter():ListAdapter<MovieDataUI, TopRatedAdapter.TopRatedVH>(DiffUtilTopRatedCallback){
+class TopRatedAdapter():ListAdapter<Result, TopRatedAdapter.TopRatedVH>(DiffUtilTopRatedCallback){
     class TopRatedVH(view: View) : RecyclerView.ViewHolder(view) {
-        private var binding: ItemTopRatedBinding = ItemTopRatedBinding.bind(view)
+        private var binding: ItemMovieBinding= ItemMovieBinding.bind(view)
 
-        fun render(item: MovieDataUI){
-
+        fun render(item: Result){
+            binding.txtTitle.text = item.title
+            binding.imgMovie.load(item.poster_path.toString()){
+                crossfade(true)
+                placeholder(R.drawable.background_monkey)
+            }
         }
     }
-    private object DiffUtilTopRatedCallback: DiffUtil.ItemCallback<MovieDataUI>() {
-        override fun areItemsTheSame(oldItem: MovieDataUI, newItem: MovieDataUI): Boolean {
+    private object DiffUtilTopRatedCallback: DiffUtil.ItemCallback<Result>() {
+        override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: MovieDataUI, newItem: MovieDataUI): Boolean {
+        override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem == newItem
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopRatedVH{
         val inflater = LayoutInflater.from(parent.context)
-        return TopRatedVH(inflater.inflate(R.layout.item_top_rated, parent, false))
+        return TopRatedVH(inflater.inflate(R.layout.item_movie, parent, false))
     }
 
     override fun onBindViewHolder(holder: TopRatedVH, position: Int) {
