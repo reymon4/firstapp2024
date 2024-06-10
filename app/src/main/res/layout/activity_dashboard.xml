@@ -5,153 +5,163 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@drawable/city"
     tools:context=".ui.activities.DashboardActivity">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <ScrollView
-            android:id="@+id/scrollView"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent">
 
-            <LinearLayout
+            <ScrollView
+                android:id="@+id/scrollView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/txt_like_to_watch"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/inter_semibold"
-                    android:paddingTop="20dp"
-                    android:text="What would you like to watch?"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="25dp" />
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="380dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/txt_search"
+                    <TextView
+                        android:id="@+id/txt_like_to_watch"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:background="@drawable/search_edit_background"
-                        android:drawableStart="@drawable/search_icon_white"
-                        android:hint="Search"
-                        android:imeOptions="actionDone"
-                        android:inputType="text"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:paddingTop="20dp"
+                        android:text="What would you like to watch?"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
+                        android:textSize="25dp" />
 
-                        android:textColorHint="@color/white"
-                        android:textSize="17sp" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="380dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txt_search"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="@drawable/search_edit_background"
+                            android:drawableStart="@drawable/search_icon_white"
+                            android:hint="Search"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:textColor="@color/white"
 
-                <TextView
+                            android:textColorHint="@color/white"
+                            android:textSize="17sp" />
 
-                    android:id="@+id/txt_top_rated"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/inter_semibold"
-                    android:paddingStart="30dp"
-                    android:text="Top Rated"
-                    android:textColor="@color/violet2"
-                    android:textSize="20dp" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/clTopRated"
-                    android:layout_marginTop="30px"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    <TextView
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvTopRated"
+                        android:id="@+id/txt_top_rated"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clipToPadding="false"
-                        android:minHeight="200dp"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:paddingStart="30dp"
+                        android:text="Top Rated"
+                        android:textColor="@color/violet2"
+                        android:textSize="20dp" />
 
-                    <ProgressBar
-                        android:id="@+id/progressBarTopRated"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:visibility="gone"
-                        tools:visibility="visible"
-                        android:indeterminateTint="@color/violet"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clTopRated"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="30px">
 
-                    android:id="@+id/txt_upcoming"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/inter_semibold"
-                    android:paddingStart="30dp"
-                    android:text="Upcoming"
-                    android:textColor="@color/violet2"
-                    android:textSize="20dp" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/clUpcoming"
-                    android:layout_marginTop="30px"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvTopRated"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:minHeight="200dp"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvUpcoming"
+                        <ProgressBar
+                            android:id="@+id/progressBarTopRated"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:indeterminateTint="@color/violet"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:visibility="visible" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+
+                        android:id="@+id/txt_upcoming"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clipToPadding="false"
-                        android:minHeight="200dp"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:paddingStart="30dp"
+                        android:text="Upcoming"
+                        android:textColor="@color/violet2"
+                        android:textSize="20dp" />
 
-                    <ProgressBar
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clUpcoming"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="30px">
 
-                        android:id="@+id/progressBarUpcoming"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:visibility="gone"
-                        tools:visibility="visible"
-                        android:indeterminateTint="@color/violet"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
-        </ScrollView>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvUpcoming"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:minHeight="200dp"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ProgressBar
+
+                            android:id="@+id/progressBarUpcoming"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:indeterminateTint="@color/violet"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:visibility="visible" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </ScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -62,5 +62,9 @@ dependencies {
     implementation("io.coil-kt:coil:2.6.0")
     //Material Design 3
     implementation ("androidx.compose.material3:material3-android:1.2.1")
+    //Swipe Refresh
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    //Coordinator Layout
+    implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
 
 }
