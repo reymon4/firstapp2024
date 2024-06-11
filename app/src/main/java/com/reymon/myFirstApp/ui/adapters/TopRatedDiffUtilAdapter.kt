@@ -4,11 +4,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.reymon.myFirstApp.R
 import com.reymon.myFirstApp.core.Constants
 import com.reymon.myFirstApp.data.network.entities.tmdb.rated.Result as ResultMovie
@@ -25,8 +28,8 @@ class TopRatedDiffUtilAdapter() : ListAdapter<ResultMovie, TopRatedDiffUtilAdapt
 
             binding.txtTitle.text = item.title
             Glide.with(binding.root).load("${Constants.TMDB_IMAGE_URL}${item.poster_path}")
+                .apply(RequestOptions().transform(RoundedCorners(25)))
                 .into(binding.imgMovie)
-            binding.txtVoteAverage.text = item.vote_average.toString()
         }
     }
 

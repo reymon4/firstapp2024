@@ -10,4 +10,5 @@
     <color name="brown">#96705B</color>
     <color name="wine">#982649</color>
     <color name="button_red">#d71515</color>
+    <color name="background"> #121318</color>
 </resources>
