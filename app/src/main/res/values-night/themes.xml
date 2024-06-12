@@ -4,4 +4,13 @@
         <!-- Customize your dark theme here. -->
         <item name="colorPrimary">@color/background</item>
     </style>
+    <style name="Theme.MyFirstApp" parent="Base.Theme.MyFirstApp" />
+    <style name="buttonStyle">
+        <item name="android:textSize">25dp</item>
+    </style>
+    <style name="Button" parent="buttonStyle">
+        <item name="android:backgroundTint">@color/violet2</item>
+
+    </style>
+
 </resources>

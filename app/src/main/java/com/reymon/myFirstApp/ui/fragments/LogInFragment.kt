@@ -13,17 +13,24 @@ import com.reymon.myFirstApp.databinding.FragmentLogInBinding
 import com.reymon.myFirstApp.logic.tmdb.GetAllTopRatedUsercase
 import com.reymon.myFirstApp.ui.activities.DashboardActivity
 import kotlinx.coroutines.Dispatchers
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
 
 
-class LogInFragment : Fragment() {
+class LogInFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentLogInBinding
-    override fun onCreateView(
+
+    companion object {
+        const val TAG = "ModalBottomSheetLogIn"
+    }override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         sharedElementEnterTransition = MaterialContainerTransform()
         binding = FragmentLogInBinding.inflate(inflater, container, false)
+
+
         initListeners()
         return binding.root
 

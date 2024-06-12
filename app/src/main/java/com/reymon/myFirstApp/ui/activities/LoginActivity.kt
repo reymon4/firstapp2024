@@ -6,22 +6,17 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.ui.res.colorResource
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat
+
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.reymon.myFirstApp.R
 import com.reymon.myFirstApp.databinding.ActivityLoginBinding
-import com.reymon.myFirstApp.logic.usercases.GetAllCharactersUserCase
+
 import com.reymon.myFirstApp.ui.fragments.LogInFragment
 
 import com.reymon.myFirstApp.ui.fragments.SignUpFragment
-
-import kotlinx.coroutines.Dispatchers
-
-import kotlinx.coroutines.launch
 
 
 class LoginActivity : AppCompatActivity() {
@@ -48,11 +43,15 @@ class LoginActivity : AppCompatActivity() {
     private fun initListeners() {
         binding.btnGetStarted.setOnClickListener {
             Log.d("logIn", "Presionando el txt_logIN")
+            /*
+                        binding.loginLayout.setBackgroundColor(resources.getColor(R.color.white))
+                        binding.btnGetStarted.visibility = View.GONE
+                        binding.txtLogIn.setTextColor(resources.getColor(R.color.black))
+                        replaceFragment(SignUpFragment())*/
+            val modalBottomSheet = SignUpFragment()
+            modalBottomSheet.show(supportFragmentManager, modalBottomSheet.tag)
 
-            binding.loginLayout.setBackgroundColor(resources.getColor(R.color.white))
-            binding.btnGetStarted.visibility = View.GONE
-            binding.txtLogIn.setTextColor(resources.getColor(R.color.black))
-            replaceFragment(SignUpFragment())
+
         }
         binding.txtLogIn.setOnClickListener {
             //Como dijimos en el endpoint que vamos a utilizar una corrutina. Creamos el ambiente para esta
@@ -67,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
         }
         binding.txtLogo.setOnClickListener {
             startActivity(
-                Intent(this, MainActivity::class.java)
+                Intent(this, this::class.java)
             )
         }
     }
