@@ -58,10 +58,11 @@ class LoginActivity : AppCompatActivity() {
             /*  lifecycleScope.launch(Dispatchers.IO) {
                   GetAllCharactersUserCase().invoke()
               }*/
-            binding.loginLayout.setBackgroundColor(resources.getColor(R.color.black))
-            binding.btnGetStarted.visibility = View.GONE
-            binding.txtLogIn.setTextColor(resources.getColor(R.color.white))
             replaceFragment(LogInFragment())
+            binding.loginLayout.setBackgroundColor(resources.getColor(R.color.black))
+           // binding.btnGetStarted.visibility = View.GONE
+            binding.txtLogIn.setTextColor(resources.getColor(R.color.white))
+
 
         }
         binding.txtLogo.setOnClickListener {
@@ -75,6 +76,8 @@ class LoginActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
             // transaction.addSharedElement(binding.loginLayout, "signUp_element_container")
             .replace(binding.fragmentContainer.id, fragment)
+            //Con esto agrego al fragment a la pila de navegación
+            .addToBackStack(null)
             .commit()
     }
 

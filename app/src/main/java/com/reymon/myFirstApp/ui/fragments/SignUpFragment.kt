@@ -27,12 +27,15 @@ class SignUpFragment : BottomSheetDialogFragment(){
         savedInstanceState: Bundle?
     ): View {
         sharedElementEnterTransition = MaterialContainerTransform()
-        binding = FragmentSignUpBinding.inflate(inflater, container, false)
+        binding = FragmentSignUpBinding.bind(inflater.inflate(R.layout.fragment_sign_up,container,false))
+        //binding = FragmentSignUpBinding.inflate(inflater, container, false)
 
         return binding.root
     }
-
-
+    //Este método es para después de que el activity ya está enlazado
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
 
 
 }
