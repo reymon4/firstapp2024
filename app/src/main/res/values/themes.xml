@@ -2,15 +2,22 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.MyFirstApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/background</item>
+        <item name="colorPrimary">@color/background</item>
     </style>
 
     <style name="Theme.MyFirstApp" parent="Base.Theme.MyFirstApp" />
     <style name="buttonStyle">
         <item name="android:textSize">25dp</item>
+
     </style>
     <style name="Button" parent="buttonStyle">
         <item name="android:backgroundTint">@color/violet2</item>
 
+    </style>
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/sky_blue</item>
+        <item name="postSplashScreenTheme">@style/Theme.MyFirstApp</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/background_monkey</item>
     </style>
 </resources>
