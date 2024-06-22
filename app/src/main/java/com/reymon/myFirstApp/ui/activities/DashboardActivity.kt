@@ -59,7 +59,9 @@ class DashboardActivity : AppCompatActivity() {
         }
     }
     private fun initRecyclerView() {
-        topRatedDiffUtilAdapter = TopRatedDiffUtilAdapter()
+        //CHECK FUNCTION
+        topRatedDiffUtilAdapter = TopRatedDiffUtilAdapter({ item ->
+            Log.d("DashboardActivity", item.toString())})
         binding.rvTopRated.adapter = topRatedDiffUtilAdapter
         binding.rvTopRated.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         initData()

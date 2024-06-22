@@ -18,18 +18,23 @@ import com.reymon.myFirstApp.data.network.entities.tmdb.rated.Result as ResultMo
 import com.reymon.myFirstApp.databinding.ItemMovieBinding
 import kotlinx.coroutines.withContext
 
-class TopRatedDiffUtilAdapter() : ListAdapter<ResultMovie, TopRatedDiffUtilAdapter.TopRatedVH>(
+class TopRatedDiffUtilAdapter(
+    private val onItemClicked: (ResultMovie) -> Unit
+) : ListAdapter<ResultMovie, TopRatedDiffUtilAdapter.TopRatedVH>(
     DiffUtilTopRatedCallback
 ) {
     class TopRatedVH(view: View) : RecyclerView.ViewHolder(view) {
         private val binding: ItemMovieBinding = ItemMovieBinding.bind(view)
 
-        fun render(item: ResultMovie) {
+        fun render(item: ResultMovie, onItemClicked: (ResultMovie) -> Unit) {
 
             binding.txtTitle.text = item.title
             Glide.with(binding.root).load("${Constants.TMDB_IMAGE_URL}${item.poster_path}")
                 .apply(RequestOptions().transform(RoundedCorners(25)))
                 .into(binding.imgMovie)
+            itemView.setOnClickListener {
+                onItemClicked(item)
+            }
         }
     }
 
@@ -49,6 +54,6 @@ class TopRatedDiffUtilAdapter() : ListAdapter<ResultMovie, TopRatedDiffUtilAdapt
     }
 
     override fun onBindViewHolder(holder: TopRatedVH, position: Int) {
-        holder.render(getItem(position))
+        holder.render(getItem(position), onItemClicked)
     }
 }
